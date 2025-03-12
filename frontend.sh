@@ -1,6 +1,6 @@
 #!/bin/bash
 Component=frontend
-logfile = /home/ec2-user/Expense-Shell/$Component.log
+logfile = /home/ec2-user/Expense-Shell/frontend.log
 
 stat() {
 if [ ! $? -eq 0 ]; then
