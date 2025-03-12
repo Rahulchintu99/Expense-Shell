@@ -12,7 +12,7 @@ if [ ! $? -eq 0 ]; then
 echo "Installing nginx application" >> $logfile
 stat()
 
-dnf install nginx -y >> $logfile
+dnf install nginx -y
 stat()
 
 systemctl enable nginx >> $logfile
