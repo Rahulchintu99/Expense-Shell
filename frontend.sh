@@ -1,11 +1,34 @@
 #!/bin/bash
-dnf install nginx -y
-$?
+logfile = /tmp/$Component.log
+Component=frontend
 
-systemctl enable nginx
-systemctl start nginx
-rm -rf /usr/share/nginx/html/*
-curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip
-cd /usr/share/nginx/html 
-unzip /tmp/frontend.zip
-systemctl restart nginx
+stat() {
+if [ ! $? -eq 0 ]; then
+    echo "Error in installing nginx"
+    exit 1
+    fi
+}
+
+echo "Installing nginx application" >> $logfile
+stat()
+
+dnf install nginx -y >> $logfile
+stat()
+
+systemctl enable nginx >> $logfile
+stat()
+
+rm -rf /usr/share/nginx/html/* >> $logfile
+stat()
+
+curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip >> $logfile
+stat() 
+
+cd /usr/share/nginx/html >> $logfile 
+stat()
+
+unzip /tmp/frontend.zip >> $logfile
+stat()
+
+systemctl restart nginx >> $logfile
+stat()
