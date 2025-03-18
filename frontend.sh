@@ -1,15 +1,15 @@
 #!/bin/bash
 Stat(){
     if [ $1 -eq 0 ]; then
-  echo -e "Nginx installed successfully"
+  echo -e "successfully"
 else
-  echo -e "Nginx installation failed"
+  echo -e "failed"
   exit 1
 fi
 }
 logFile=/tmp/$component.log
 
-echo -n "Installing nginx application"
+echo -n "Installing nginx application :"
 dnf install nginx -y &>> $logFile
 Stat $?
 
@@ -17,7 +17,7 @@ echo -n "Clearning Old $component Content:"
 rm -rf /usr/share/nginx/html/* 
 Stat $?
 
-echo -n "Downloading frontend content"
+echo -n "Downloading frontend content :"
 curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logFile
 Stat $?
 
