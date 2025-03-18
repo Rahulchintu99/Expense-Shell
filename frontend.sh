@@ -10,10 +10,10 @@ else
   exit 1
 fi
 
-echo -e "Enabling nginx application" &>> /tmp/frontend.log
+echo -e "Enabling nginx application"
 systemctl enable nginx   &>> /tmp/frontend.log
 
-echo -e "Restarting Nginx successfully" &>> /tmp/frontend.log
+echo -e "Restarting Nginx successfully"
 systemctl restart nginx  &>> /tmp/frontend.log
 
 
