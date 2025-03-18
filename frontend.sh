@@ -17,13 +17,13 @@ echo -n "Clearning Old $component Content:"
 rm -rf /usr/share/nginx/html/* 
 Stat $?
 
-echo -e "Downloading frontend content"
+echo -n "Downloading frontend content"
 curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logFile
 Stat $?
 
 echo -n "Extracting $component Content:"
-cd /usr/share/nginx/html 
-unzip /tmp/frontend.zip &>> $logFile
+cd /usr/share/nginx/html/*
+unzip -o /tmp/frontend.zip &>> $logFile
 Stat $?
 
 echo -e "Enabling nginx application"
