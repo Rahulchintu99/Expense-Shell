@@ -9,15 +9,15 @@ fi
 }
 logFile=/tmp/$component.log
 
-echo -n "Installing nginx application :"
+echo -n "Installing nginx application: "
 dnf install nginx -y &>> $logFile
 Stat $?
 
-echo -n "Clearning Old $component Content:"
-rm -rf /usr/share/nginx/html/* 
+echo -n "Clearning Old $component Content: "
+rm -rf /usr/share/nginx/html/* /etc/nginx/nginx.conf &>> $logFile
 Stat $?
 
-echo -n "Downloading frontend content :"
+echo -n "Downloading frontend content: "
 curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logFile
 Stat $?
 
