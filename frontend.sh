@@ -4,20 +4,20 @@ logfile = /home/ec2-user/Expense-Shell/frontend.log
 
 stat() {
 if [ ! $? -eq 0 ]; then
-    echo "Error in installing nginx" >> $logfile
+    echo "Error in installing nginx" & >> $logfile
     exit 1
     fi
 }
 
 echo "Installing nginx application" >> $logfile
 dnf install nginx -y
-stat()
+stat $?
 
 systemctl enable nginx >> $logfile
-stat()
+stat $?
 
 rm -rf /usr/share/nginx/html/* >> $logfile
-stat()
+stat $?
 
 curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip >> $logfile
 stat() 
