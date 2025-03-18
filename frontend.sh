@@ -22,12 +22,12 @@ curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip 
 Stat $?
 
 echo -n "Extracting $component Content:"
-cd /usr/share/nginx/html/*
+cd /usr/share/nginx/html
 unzip -o /tmp/frontend.zip &>> $logFile
 Stat $?
 
 echo -n "Enabling nginx application"
-systemctl enable nginx &>> $logFile
+systemctl enable nginx
 systemctl restart nginx &>> $logFile
 Stat $?
 
