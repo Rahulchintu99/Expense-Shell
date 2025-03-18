@@ -9,7 +9,7 @@ fi
 }
 logFile=/tmp/$component.log
 
-echo -e "Installing nginx application"
+echo -n "Installing nginx application"
 dnf install nginx -y &>> $logFile
 Stat $?
 
@@ -26,7 +26,7 @@ cd /usr/share/nginx/html/*
 unzip -o /tmp/frontend.zip &>> $logFile
 Stat $?
 
-echo -e "Enabling nginx application"
+echo -n "Enabling nginx application"
 systemctl enable nginx &>> $logFile
 systemctl restart nginx &>> $logFile
 Stat $?
