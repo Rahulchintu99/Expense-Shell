@@ -21,11 +21,15 @@ echo -e "Downloading frontend content"
 curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logFile
 Stat $?
 
+echo -n "Extracting $component Content:"
+cd /usr/share/nginx/html 
+unzip /tmp/frontend.zip &>> $logFile
+Stat $?
+
 echo -e "Enabling nginx application"
 systemctl enable nginx &>> $logFile
-
-echo -e "Restarting Nginx successfully"
 systemctl restart nginx &>> $logFile
+Stat $?
 
 
 
