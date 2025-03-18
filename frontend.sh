@@ -1,6 +1,6 @@
 #!/bin/bash
 Stat(){
-    if [ $? -eq 0 ]; then
+    if [ $1 -eq 0 ]; then
   echo -e "Nginx installed successfully"
 else
   echo -e "Nginx installation failed"
