@@ -1,35 +1,35 @@
 #!/bin/bash
-Stat(){
-    if [ $1 -eq 0 ]; then
-  echo -e "successfully"
-else
-  echo -e "failed"
-  exit 1
-fi
-}
-logFile=/tmp/$component.log
 
-echo -n "Installing nginx application: "
-dnf install nginx -y &>> $logFile
-Stat $?
+component=frontend
 
-echo -n "Clearning Old $component Content: "
-rm -rf /usr/share/nginx/html/* /etc/nginx/nginx.conf &>> $logFile
-Stat $?
+source common.sh                                                         # Importing common functions from common.sh
+echo -n "Installing Nginx:"
+dnf install nginx -y     &>> $logFile
+stat $?
 
-echo -n "Downloading frontend content: "
-curl -o /tmp/frontend.zip https://expense-web-app.s3.amazonaws.com/frontend.zip &>> $logFile
-Stat $?
+echo -n "Configuring Proxy:"
+cp expense.conf /etc/nginx/default.d/expense.conf  &>> $logFile
+stat $?
+
+echo -n "Clearning Old $component Content:"
+rm -rf /usr/share/nginx/html/* 
+stat $?
+
+echo -n "Downloading $component Content:"
+curl -o /tmp/$component.zip https://expense-web-app.s3.amazonaws.com/$component.zip &>> $logFile
+stat $?
 
 echo -n "Extracting $component Content:"
-cd /usr/share/nginx/html
-unzip -o /tmp/frontend.zip &>> $logFile
-Stat $?
+cd /usr/share/nginx/html 
+unzip -o /tmp/$component.zip &>> $logFile
+stat $?
 
-echo -n "Enabling nginx application"
-systemctl enable nginx
-systemctl restart nginx &>> $logFile
-Stat $?
+echo -n "Restarting Nginx:"
+systemctl enable nginx   &>> $logFile
+systemctl restart nginx 
+stat $?
+
+echo -n "*****  $component Execution Completed  *****"
 
 
 
